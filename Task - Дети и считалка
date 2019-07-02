@@ -1,0 +1,22 @@
+<?php
+function findHeading($war, $kill) {
+  $countWar = count($war);
+  $result = [];
+  $countRes = count($result);
+  $k = 1;
+  while ($countRes != $countWar) {
+    for ($i = 0; $i < $countWar; $i++){
+      if ($war[$i] == '0') {
+        continue;
+      }
+      if (($k++ % $kill) == 0) {
+        array_push($result, $war[$i]);
+        $war[$i] = '0';
+      }
+      $countRes = count($result);
+    }
+  }
+  print_r($result[$countWar-1]);
+}
+findHeading(["Ваня","Аня","Настя","Алена","Петя","Коля","Лена","Саша","Рома","Катя","Андрей","Максим"], 4);
+?>
