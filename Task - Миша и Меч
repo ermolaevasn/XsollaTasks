@@ -1,0 +1,22 @@
+<?php
+class ResaleCaclulator
+{
+public function calculateLowestLoss(array $prices): int
+  {
+     $countArr = count($prices);
+     $res = $prices[0];
+     $difference = $prices[0];
+     for ($i = 0; $i < $countArr; $i++) {
+          for ($j = $i+1; $j < $countArr; $j++)
+          {
+           $difference = $prices[$i] - $prices[$j];
+           if (($difference < $res) && ($prices[$j] <= $prices[$i])) $res = $difference;
+          }
+     }
+     return $res;
+  }
+}
+$ResaleCaclulator = new ResaleCaclulator();
+$calculate = $ResaleCaclulator->calculateLowestLoss([210, 130, 50, 175, 100]);
+echo $calculate; 
+?>
