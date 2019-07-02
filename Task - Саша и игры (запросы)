@@ -1,0 +1,16 @@
+TASK 2. Список игр, в которые Саша пока не играл
+select "name_game","issue_year" from "Games"
+where "Id_game" NOT IN (select "Id_game" from "Review")
+
+
+TASK 3. Топ-3 игры в выбранном жанре
+select * from 
+(select "name_game","mark" from "Games" g join "Review" r on g."Id_game" = r."Id_game"
+where "genre" = 'horror'
+order by "mark" desc)
+where rownum < 4
+
+
+TASK 4. Название серии и количество игр в ней
+select "publisher", COUNT("name_game") from "Games"
+group by "publisher"
